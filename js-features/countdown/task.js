@@ -1,14 +1,17 @@
-let timer = document.getElementById("timer")
-let status = document.getElementById("status")
+let timer = document.getElementById('timer')
+let status = document.getElementById('status')
 
 timer = 59;
+let seconds = 1 * 3600;
+let secondsInDay = 24 * 3600;
 
-function countdown() {
+let countdown = setInterval(function() {
+
     timer--;
-    if(timer === 0) {
-        alert("Вы победили в конкурсе!")
-    }
-    status.textContent = "До окончания конкурса осталось секунд: " + timer;
-}
 
-setInterval(countdown, 1000);
+    if (timer == 0) {
+        alert('Вы победили в конкурсе!');
+        clearInterval(countdown)
+    }
+    status.textContent = 'До окончания конкурса осталось секунд: ' + timer;
+}, 1000);
