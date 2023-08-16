@@ -1,15 +1,12 @@
 const clickerCounter = document.getElementById('clicker__counter');
-const cookie = document.querySelector('img')
+const cookie = document.getElementById('cookie');
 
 let clicks = 0;
 
+// cookie.addEventListener('click', function() {
+//     cookie.onclick = () => clickerCounter.textContent = clicks++;
+// });
+
 cookie.onclick = function() {
-    cookie.onclick = () => clickerCounter.textContent = clicks++
+    cookie.classList.toggle('bigger__cookie');
 };
-cookie.addEventListener('click', function() {
-    if(cookie.classList.contains('bigger__cookie')) {
-        cookie.classList.remove('bigger__cookie');
-    } else {
-        cookie.classList.add('bigger__cookie');
-    }
-});
