@@ -5,8 +5,9 @@ let clicks = 0;
 
 cookie.addEventListener('click', function() {
     cookie.onclick = () => clickerCounter.textContent = clicks++;
+    if(cookie.width == 200) {
+        cookie.width = 230;
+    } else {
+        cookie.width = 200
+    }
 });
-
-cookie.onclick = function() {
-    cookie.classList.toggle('bigger__cookie');
-};
