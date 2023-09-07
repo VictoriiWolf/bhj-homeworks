@@ -17,16 +17,15 @@ class Game {
   }
 
   registerEvents() {
-    this.currentSymbol = document.querySelector('.symbol_current')
-// не могу додуматься, как получить введенную букву
-    this.currentSymbol.addEventListener('keydown', function() {
-      if(this.currentSymbol === inputLetter) {
-        return success();
-      } else {
-        return fail();
-      }
-    })
-    }
+  document.addEventListener('keyup', event => {
+        if (event.key == this.currentSymbol.textContent) {
+          this.success();
+        } else {
+          this.fail();
+        }
+    }) 
+  }
+
 
   success() {
     if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
