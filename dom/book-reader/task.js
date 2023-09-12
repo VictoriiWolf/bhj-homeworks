@@ -1,7 +1,6 @@
 const fontSizes = document.querySelectorAll('a');
 
 fontSizes.forEach((el) => {
-  debugger
     el.addEventListener('click', (event) => {
       event.preventDefault();
       if(el.classList.contains('font-size_active')) {
