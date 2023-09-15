@@ -1,6 +1,5 @@
-const fontSizes = Array.from(document.querySelectorAll('a'));
+const fontSizes = document.querySelectorAll('a');
 let book = document.querySelector('.book')
-let size;
 
 function pushButton(event) {
   fontSizes.forEach(el => {
@@ -8,10 +7,27 @@ function pushButton(event) {
   })
 
   this.classList.add('font-size_active');
-  el.dataset.size // как заставить эту вещь менять размер шрифта?
   event.preventDefault();
-}
 
+  let option = 0;
+
+  fontSizes.forEach((i, index) => {
+    if(i.classList.contains('font-size_active')) {
+      option = index;
+    }
+    
+    if(option === 0) {
+      book.classList.add('book_fs-small');
+      book.classList.remove('book_fs-big');
+    } else if(option === 1) {
+      book.classList.remove('book_fs-small')
+      book.classList.remove('book_fs-big')
+    } else if(option === 2) {
+      book.classList.add('book_fs-big');
+      book.classList.remove('book_fs-small')
+    }
+  });
+}
 
   fontSizes.forEach(el => {
     el.addEventListener('click', pushButton)

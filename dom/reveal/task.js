@@ -1,19 +1,22 @@
-const body = document.querySelector('body')
-const reveal = document.querySelector('.reveal')
+const reveal = document.querySelectorAll('.reveal');
 
-function isVisible(reveal) {
-    const { top, bottom } = reveal.getBoundingClientRect();
-    if (top < window.innerHeight && bottom > 0) {
-        return true;
-    }
-}
+addEventListener('scroll', () => {
+  const height = window.innerHeight;
+  const firstRevealY = reveal[0].getBoundingClientRect().y; 
+  const firstRevealB = reveal[0].getBoundingClientRect().bottom; 
+  const secondRevealY = reveal[1].getBoundingClientRect().y; 
+  const secondRevealB = reveal[1].getBoundingClientRect().bottom; 
 
-let visibility = isVisible(reveal);
+  if(firstRevealY >= 0 && firstRevealB <= height) {
+    reveal[0].classList.add('reveal_active');
+  } else {
+    reveal[0].classList.remove('reveal_active');
+  }
 
-body.addEventListener('scroll', () => {
-        setInterval(() => {        
-            if(visibility = true) {
-                reveal.classList.add('reveal_active');
-            }
-        }, 100)
-    });
+  if(secondRevealY >= 0 && secondRevealB <= height) {
+    reveal[1].classList.add('reveal_active');
+  } else {
+    reveal[1].classList.remove('reveal_active');
+  }
+
+});
