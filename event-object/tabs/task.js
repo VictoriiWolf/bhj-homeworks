@@ -1,44 +1,30 @@
-const tabs = Array.from(document.querySelectorAll('.tab'));
-const tabsContents = Array.from(document.querySelectorAll('.tab__content'))
+const tabs = document.querySelectorAll('.tab');
+const tabsContents = document.querySelectorAll('.tab__content');
+const tabNavigation = document.querySelector('.tab__navigation');
 
-// tabs.forEach(tab => {
-//     tab.addEventListener('click', function() {
-//             tab.classList.remove('tab_active')
-//     })
-//           tab.classList.add('tab_active')
-//         })
+let indexEventElement = null;
 
-// tabsContents.forEach(tabContent => {
-//     tabContent.addEventListener('click', function() {
-//         if(tabContent.classList.contains('tab__content_active')) {
-//             tabContent.classList.remove('tab__content_active')
-//         } else {
-//             tabContent.classList.add('tab__content_active')
-//         }
-//     })
-// })
+tabs.forEach((i, index) => {
+  i.addEventListener('click', () => {
+    indexEventElement = index;
+  });
+});
 
-function selectTab() {
-    tabs.forEach(tab => {
-        tab.classList.remove('tab_active')
-    })
+tabNavigation.addEventListener('click', (event) => { 
+  let eventElement = event.target;
 
-    this.classList.add('tab_active');
-}
+  if(eventElement.classList.contains('tab')) { 
+    tabs.forEach((i, index) => {
+      i.classList.remove('tab_active');
+    });
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', selectTab)
-})
+    eventElement.classList.add('tab_active'); 
 
-function showContent() {
-    tabsContents.forEach(tabContent => {
-        tabContent.classList.remove('tab__content_active')
-})
+    tabsContents.forEach(item => { 
+      item.classList.remove('tab__content_active');
+    });
 
-this.classList.add('tab__content_active')
-}
-
-tabsContents.forEach(tabContent => {
-    tabContent.addEventListener('click', showContent)
-})
-}
+    tabsContents[indexEventElement].classList.add('tab__content_active');
+    
+  };
+});
